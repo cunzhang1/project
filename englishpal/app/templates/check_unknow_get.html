@@ -71,41 +71,48 @@
             element.value = element.value + " " + getWord();
             highlightWord()
         }
-
+        //划词高亮
         function highlightWord(){
             var word = ""+getWord()
             if (word.trim() !== ""){
                 var e = document.getElementById("articles")
                 var title = e.children[0]
                 var body = e.children[1]
+                //将高亮的单词保存在newWord_title和newWord_body中
                 var newWord_title = title.innerHTML.replaceAll(getWord(),'<span class="highlight">'+getWord()+'</span>')
                 var newWord_body = body.innerHTML.replaceAll(getWord(),'<span class="highlight">'+getWord()+'</span>')
+                //用高亮的单词替换相同但未高亮的单词
                 $(title).html(newWord_title)
                 $(body).html(newWord_body)
             }
         }
-
+        //清除高亮
         function deleteWordLight(){
             var e = document.getElementById("articles")
             var title = e.children[0]
             var body = e.children[1]
+            //将未高亮的单词保存在markWord_title和markWord_body中
             var markWord_title = title.innerText
             var markWord_body = body.innerText
+            //用未高亮的单词替换相同但高亮的单词
             $(title).html(markWord_title)
             $(body).html(markWord_body)
         }
-
+        //生词库高亮
         function markWordLight(){
+            //获取网页最下端的生词库
             var markWords = document.getElementsByClassName("new-word");
             var e = document.getElementById("articles")
             var title = e.children[0]
             var body = e.children[1]
+            //将高亮的单词保存在markWord_title和markWord_body中
             var markWord_title = title.innerText
             var markWord_body = body.innerText
             for(let i=0; i<markWords.length; i++){
                 markWord_title = markWord_title.replaceAll(markWords[i].firstElementChild.text,'<span class="markHighlight">'+markWords[i].firstElementChild.text+'</span>')
                 markWord_body = markWord_body.replaceAll(markWords[i].firstElementChild.text,'<span class="markHighlight">'+markWords[i].firstElementChild.text+'</span>')
             }
+            //用高亮的单词替换相同但未高亮的单词
             $(title).html(markWord_title)
             $(body).html(markWord_body)
         }

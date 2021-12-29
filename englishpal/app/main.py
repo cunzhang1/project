@@ -249,8 +249,8 @@ def signup():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
-        if not session.get('logged_in'):
             return render_template('login.html')
+        if not session.get('logged_in'):
         else:
             return '你已登录 <a href="/%s">%s</a>。 登出点击<a href="/logout">这里</a>。' % (session['username'], session['username'])
     elif request.method == 'POST':
